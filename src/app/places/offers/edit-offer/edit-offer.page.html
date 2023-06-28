@@ -1,13 +1,89 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>edit-offer</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button
+        defaultHref="/places/tabs/offers/{{place?.id}}"
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Edit "{{place?.title}}"</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">edit-offer</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <div style="background-color: #f2f2f2; padding: 20px">
+    <h1
+      style="
+        color: #ff9900;
+        font-family: 'Old English Text MT', blackletter;
+        font-size: 40px;
+      "
+    >
+      Welcome to the Edit Page!
+    </h1>
+    <p
+      style="
+        color: #336699;
+        font-family: 'Times New Roman', serif;
+        font-size: 18px;
+      "
+    >
+      Get ready to embark on a mesmerizing journey of editing brilliance. The
+      Edit Page is your gateway to textual transformation, where words come
+      alive and creativity knows no bounds.
+    </p>
+    <p
+      style="
+        color: #993366;
+        font-family: 'Bookman Old Style', serif;
+        font-size: 22px;
+      "
+    >
+      Within the mystical realm of the Edit Page, paragraphs unravel their
+      secrets, sentences transcend their mundane existence, and the art of
+      expression takes on an ethereal quality.
+    </p>
+    <p
+      style="
+        color: #669933;
+        font-family: 'Palatino Linotype', serif;
+        font-size: 16px;
+      "
+    >
+      With every stroke of your keyboard, you hold the power to shape the
+      destiny of your words. Let your thoughts dance across the digital canvas,
+      intertwining with fonts that breathe life into your prose.
+    </p>
+    <p
+      style="
+        color: #990099;
+        font-family: 'Lucida Blackletter', blackletter;
+        font-size: 20px;
+      "
+    >
+      The Edit Page embraces your creative madness, inviting you to revel in a
+      symphony of hues and typefaces. Paint your paragraphs with colors that
+      evoke emotion, and select fonts that reflect your unique voice.
+    </p>
+    <p style="color: #333333; font-family: 'Georgia', serif; font-size: 18px">
+      Whether you seek to edit a simple document or craft a literary
+      masterpiece, the Edit Page stands as your faithful companion. It empowers
+      you to edit effortlessly, shaping your content with finesse and precision.
+    </p>
+    <p style="color: #990000; font-family: 'Bodoni MT', serif; font-size: 24px">
+      Embrace the allure of customization, for the Edit Page delights in
+      granting you the freedom to experiment. Indulge in a world of colors,
+      where vibrant tones infuse your words with vitality and energy.
+    </p>
+    <p
+      style="
+        color: #006666;
+        font-family: 'Goudy Old Style', serif;
+        font-size: 20px;
+      "
+    >
+      So, dear creator of textual wonders, step into the Edit Page and unleash
+      your wildest imaginings. For within this sacred realm, your words shall
+      soar, and the magic of editing shall guide your literary odyssey.
+    </p>
+  </div>
 </ion-content>

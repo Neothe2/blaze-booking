@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Place } from '../place';
+import { PlaceService } from '../place.service';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-discover',
@@ -6,10 +9,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./discover.page.scss'],
 })
 export class DiscoverPage implements OnInit {
+  places: Place[] = [];
 
-  constructor() { }
+  constructor(
+    private placesService: PlaceService,
+    private menuController: MenuController
+  ) {}
 
   ngOnInit() {
+    this.places = this.placesService.getAllPlaces();
   }
 
+  onOpen() {
+    this.menuController.open('m1');
+    console.log('Menu opened');
+  }
 }
