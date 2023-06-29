@@ -22,6 +22,5 @@ export class DiscoverPage implements OnInit {
 
   onOpen() {
     this.menuController.open('m1');
-    console.log('Menu opened');
   }
 }

@@ -4,7 +4,7 @@ import { PlaceService } from '../../place.service';
 import { Place } from '../../place';
 import { Location } from '@angular/common';
 import { ModalController, NavController } from '@ionic/angular';
-import { CreateBookingComponent } from 'src/app/bookings/create-booking/create-booking.component';
+import { CreateBookingPage } from 'src/app/bookings/create-booking/create-booking.page';
 
 @Component({
   selector: 'app-place-detail',
@@ -23,7 +23,6 @@ export class PlaceDetailPage implements OnInit {
 
   ngOnInit() {
     const placeId = this.route.snapshot.paramMap.get('placeId');
-    console.log(placeId);
     if (placeId) {
       this.place = this.placesService.getPlaceById(placeId);
     }
@@ -31,9 +30,20 @@ export class PlaceDetailPage implements OnInit {
 
   onBookPlace() {
     this.modalCtrl
-      .create({ component: CreateBookingComponent })
+      .create({
+        component: CreateBookingPage,
+        componentProps: {
+          place: this.place,
+        },
+      })
       .then((modalEl) => {
         modalEl.present();
+        return modalEl.onDidDismiss();
+      })
+      .then((resultData: any) => {
+        if (resultData.role == 'confirm') {
+          // console.log('Booked');
+        }
       });
   }
 }

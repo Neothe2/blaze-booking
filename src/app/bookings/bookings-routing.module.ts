@@ -6,8 +6,20 @@ import { BookingsPage } from './bookings.page';
 const routes: Routes = [
   {
     path: '',
-    component: BookingsPage
-  }
+    component: BookingsPage,
+  },
+  {
+    path: 'create-booking',
+    redirectTo: '',
+    pathMatch: 'full',
+  },
+  {
+    path: 'create-booking',
+    loadChildren: () =>
+      import('./create-booking/create-booking.module').then(
+        (m) => m.CreateBookingPageModule
+      ),
+  },
 ];
 
 @NgModule({
