@@ -20,4 +20,8 @@ export class OffersPage implements OnInit {
   onEdit(placeId: any, slidingItem: IonItemSliding) {
     slidingItem.close();
   }
+
+  getDummyDate() {
+    return new Date();
+  }
 }

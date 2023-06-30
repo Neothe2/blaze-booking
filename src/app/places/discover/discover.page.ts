@@ -11,6 +11,12 @@ import { MenuController } from '@ionic/angular';
 export class DiscoverPage implements OnInit {
   places: Place[] = [];
 
+  // isToolbarHidden = false;
+
+  // scrollHandler(event: any) {
+  //   this.isToolbarHidden = event.detail.scrollTop > 50; // you can customize the scroll distance here
+  // }
+
   constructor(
     private placesService: PlaceService,
     private menuController: MenuController
@@ -22,5 +28,9 @@ export class DiscoverPage implements OnInit {
 
   onOpen() {
     this.menuController.open('m1');
+  }
+
+  onFilterUpdate(event: any) {
+    console.log(event.detail.value);
   }
 }

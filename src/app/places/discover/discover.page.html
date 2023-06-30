@@ -7,10 +7,20 @@
   </ion-toolbar>
 </ion-header>
 
+<!-- [class.hidden]="isToolbarHidden" [class.shown]="!isToolbarHidden" -->
+
+<!-- (ionScroll)="scrollHandler($event)" -->
+
+<!-- scrollEvents="true" -->
+
 <ion-content class="ion-padding">
+  <ion-segment value="all" (ionChange)="onFilterUpdate($event)">
+    <ion-segment-button value="all">All Places</ion-segment-button>
+    <ion-segment-button value="bookable">Bookable Places</ion-segment-button>
+  </ion-segment>
   <ion-grid>
     <ion-row>
-      <ion-col size="12" size-sm="8" offset-sm="2">
+      <ion-col size="12" size-sm="8" offset-sm="2" size-lg="4" offset-lg="4">
         <ion-card>
           <ion-card-header class="ion-text-center">
             <ion-card-title> {{places[0].title}} </ion-card-title>
@@ -35,7 +45,7 @@
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col size="12" size-sm="8" offset-sm="2">
+      <ion-col size="12" size-sm="8" offset-sm="2" size-lg="6" offset-lg="3">
         <ion-list>
           <ion-item
             *ngFor="let place of places.slice(1)"
