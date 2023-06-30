@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Place } from '../place';
 import { PlaceService } from '../place.service';
+import { IonItemSliding } from '@ionic/angular';
 
 @Component({
   selector: 'app-offers',
@@ -14,5 +15,9 @@ export class OffersPage implements OnInit {
 
   ngOnInit() {
     this.places = this.placesService.getAllPlaces();
+  }
+
+  onEdit(placeId: any, slidingItem: IonItemSliding) {
+    slidingItem.close();
   }
 }
