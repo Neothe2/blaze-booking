@@ -17,6 +17,8 @@ export class HideHeaderDirective implements OnInit {
 
   ngOnInit(): void {
     this.headerEl = this.el.nativeElement.querySelector('ion-header');
+    // let allheaderEl = this.el.nativeElement.querySelectorAll('ion-header');
+    // this.headerEl = allheaderEl[allheaderEl.length - 1];
     this.renderer.setStyle(this.headerEl, 'transition', 'transform 700ms');
     console.log('b');
   }

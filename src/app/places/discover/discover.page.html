@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header translucent="true">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button menu="m1"></ion-menu-button>
@@ -13,7 +13,12 @@
 
 <!-- scrollEvents="true" -->
 
-<ion-content class="ion-padding">
+<ion-content
+  class="ion-padding"
+  fullscreen="true"
+  scrollEvents="true"
+  appHideHeader
+>
   <ion-segment value="all" (ionChange)="onFilterUpdate($event)">
     <ion-segment-button value="all">All Places</ion-segment-button>
     <ion-segment-button value="bookable">Bookable Places</ion-segment-button>

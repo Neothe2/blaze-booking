@@ -10,6 +10,7 @@ import { LoadingController } from '@ionic/angular';
 })
 export class AuthPage implements OnInit {
   isLoading: boolean = false;
+  isLogin: boolean = true;
 
   constructor(
     public authService: AuthService,
@@ -36,5 +37,21 @@ export class AuthPage implements OnInit {
         }, 1500);
       });
     this.authService.login();
+  }
+
+  onSubmit(form: any) {
+    if (!form.valid) {
+      return;
+    }
+    const email = form.value.email;
+    const password = form.value.password;
+    this.onLogin();
+    console.log(email, password);
+  }
+
+  onSwitchAuthMode() {
+    //toggle this.isLogin
+    this.isLogin = !this.isLogin;
+    console.log(this.isLogin);
   }
 }

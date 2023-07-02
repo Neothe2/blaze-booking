@@ -4,11 +4,17 @@
       <ion-back-button defaultHref="/places/tabs/offers"></ion-back-button>
     </ion-buttons>
     <ion-title>New Offer</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onCreateOffer()">
+        <ion-icon slot="icon-only" name="checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-grid>
+  <!-- Test code for responsive layout -->
+  <!-- <ion-grid>
     <ion-row>
       <ion-col size="12" size-md="6" *ngFor="let item of items">
         <ion-card>
@@ -21,5 +27,94 @@
         </ion-card>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
+  <form [formGroup]="form">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">
+              Title <ion-text color="danger">(required)</ion-text></ion-label
+            >
+            <ion-input
+              name="title"
+              formControlName="title"
+              type="text"
+              autocomplete
+              autocorrect
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating"
+              >Short Description
+              <ion-text color="danger">(required)</ion-text></ion-label
+            >
+            <ion-textarea
+              rows="3"
+              formControlName="shortDesc"
+              name="shortDesc"
+            ></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">
+              Price <ion-text color="danger">(required)</ion-text></ion-label
+            >
+            <ion-input
+              type="number"
+              formControlName="price"
+              name="price"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label> Available from </ion-label>
+            <ion-datetime-button
+              formControlName="availableFrom"
+              name="availableFrom"
+              datetime="from"
+              min="2023-01-01"
+              max="2023-12-31"
+            ></ion-datetime-button>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="right"> Available to </ion-label>
+            <ion-datetime-button
+              formControlName="avaliableTo"
+              name="avaliableTo"
+              datetime="to"
+              min="2023-01-01"
+              max="2023-12-31"
+            ></ion-datetime-button>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+  <ion-modal [keepContentsMounted]="true">
+    <ng-template>
+      <ion-datetime id="from"></ion-datetime>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal [keepContentsMounted]="true">
+    <ng-template>
+      <ion-datetime id="to"></ion-datetime>
+    </ng-template>
+  </ion-modal>
 </ion-content>

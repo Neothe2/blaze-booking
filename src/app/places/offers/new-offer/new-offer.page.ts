@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-new-offer',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-offer.page.scss'],
 })
 export class NewOfferPage implements OnInit {
+  form: FormGroup;
   items = [
     { title: 'Item 1', description: 'Description 1' },
     { title: 'Item 2', description: 'Description 2' },
@@ -14,7 +16,17 @@ export class NewOfferPage implements OnInit {
     // Add as many items as you want here...
   ];
 
-  constructor() {}
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+      title: ['', [Validators.required]],
+      shortDesc: ['', [Validators.required]],
+      price: ['', [Validators.required]],
+      availableFrom: ['', [Validators.required]],
+      availableTo: ['', [Validators.required]],
+    });
+  }
 
   ngOnInit() {}
+
+  onCreateOffer() {}
 }
