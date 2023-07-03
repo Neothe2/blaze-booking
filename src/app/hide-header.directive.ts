@@ -9,31 +9,30 @@ import {
 @Directive({
   selector: '[appHideHeader]',
 })
-export class HideHeaderDirective implements OnInit {
-  private lastY = 0;
-  private headerEl: any;
+export class HideHeaderDirective {
+  private lastScrollTop = 0;
+  private isHidden = false;
 
-  constructor(private renderer: Renderer2, private el: ElementRef) {}
-
-  ngOnInit(): void {
-    this.headerEl = this.el.nativeElement.querySelector('ion-header');
-    // let allheaderEl = this.el.nativeElement.querySelectorAll('ion-header');
-    // this.headerEl = allheaderEl[allheaderEl.length - 1];
-    this.renderer.setStyle(this.headerEl, 'transition', 'transform 700ms');
-    console.log('b');
-  }
+  constructor(private el: ElementRef, private renderer: Renderer2) {}
 
   @HostListener('ionScroll', ['$event']) onContentScroll($event: any) {
-    console.log('a');
-    if ($event.detail.scrollTop > this.lastY) {
+    console.log('asdfasdfasdfasdfasdfasdf');
+    const scrollTop = $event.detail.scrollTop;
+    if (scrollTop > this.lastScrollTop && !this.isHidden) {
       this.renderer.setStyle(
-        this.headerEl,
+        this.el.nativeElement,
         'transform',
-        `translateY(-${this.headerEl.clientHeight}px)`
+        'translateY(-100%)'
       );
-    } else {
-      this.renderer.setStyle(this.headerEl, 'transform', 'translateY(0)');
+      this.isHidden = true;
+    } else if (scrollTop < this.lastScrollTop && this.isHidden) {
+      this.renderer.setStyle(
+        this.el.nativeElement,
+        'transform',
+        'translateY(0)'
+      );
+      this.isHidden = false;
     }
-    this.lastY = $event.detail.scrollTop;
+    this.lastScrollTop = scrollTop;
   }
 }

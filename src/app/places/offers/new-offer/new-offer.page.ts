@@ -20,13 +20,15 @@ export class NewOfferPage implements OnInit {
     this.form = this.fb.group({
       title: ['', [Validators.required]],
       shortDesc: ['', [Validators.required]],
-      price: ['', [Validators.required]],
-      availableFrom: ['', [Validators.required]],
-      availableTo: ['', [Validators.required]],
+      price: [0, [Validators.required]],
+      availableFrom: [new Date().toISOString(), [Validators.required]],
+      availableTo: [new Date().toISOString(), [Validators.required]],
     });
   }
 
   ngOnInit() {}
 
-  onCreateOffer() {}
+  onCreateOffer() {
+    console.log(this.form.value);
+  }
 }
