@@ -11,7 +11,10 @@
   <ion-grid>
     <ion-row>
       <ion-col size-md="6" offset-md="3">
-        <ion-list>
+        <p *ngIf="!bookings || bookings.length <= 0">
+          You currently have no bookings
+        </p>
+        <ion-list *ngIf="bookings && bookings.length > 0 ">
           <ion-item-sliding *ngFor="let booking of bookings">
             <ion-item>
               <ion-label>

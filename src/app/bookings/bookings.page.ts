@@ -13,11 +13,12 @@ export class BookingsPage implements OnInit {
   constructor(private bookingService: BookingService) {}
 
   ngOnInit() {
-    this.bookings = this.bookingService.getBookins();
+    this.bookingService.bookings.subscribe((bookings) => {
+      this.bookings = bookings;
+    });
   }
 
   onCancelBooking(booking: any) {
-    this.bookingService.cancelBooking(booking.id);
-    this.bookings = this.bookingService.getBookins();
+    this.bookingService.cancelBooking(booking.id).subscribe();
   }
 }

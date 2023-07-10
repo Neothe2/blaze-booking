@@ -1,56 +1,55 @@
 import { Injectable } from '@angular/core';
 import { Booking } from './booking.model';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { take, tap } from 'rxjs/operators';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class BookingService {
-  private _bookings: Booking[] = [
-    {
-      id: 'xyz',
-      placeId: '1',
-      placeTitle: 'The Ritz-Carlton',
-      guestNumber: 2,
-      userId: '123',
-    },
-    {
-      id: 'abc',
-      placeId: '2',
-      placeTitle: 'Marriott Marquis',
-      guestNumber: 3,
-      userId: '345',
-    },
-    {
-      id: 'efg',
-      placeId: '3',
-      placeTitle: 'Hilton',
-      guestNumber: 4,
-      userId: '678',
-    },
-    {
-      id: 'hig',
-      placeId: '4',
-      placeTitle: 'Four Seasons',
-      guestNumber: 5,
-      userId: '901',
-    },
-    {
-      id: 'klm',
-      placeId: '5',
-      placeTitle: 'Holiday Inn',
-      guestNumber: 6,
-      userId: '901',
-    },
-  ];
+  private _bookings = new BehaviorSubject<Booking[]>([]);
 
-  constructor() {}
+  constructor(private auth: AuthService) {}
 
-  getBookins() {
-    return [...this._bookings];
+  get bookings() {
+    return this._bookings.asObservable();
   }
 
-  cancelBooking(bookingId: string) {
-    //deletes a booking
-    this._bookings = this._bookings.filter(
-      (booking) => booking.id !== bookingId
+  addBooking(
+    placeId: string,
+    placeTitle: string,
+    placeImage: string,
+    firstName: string,
+    lastName: string,
+    guestNumber: number,
+    dateFrom: Date,
+    dateTo: Date
+  ) {
+    const newBooking = new Booking(
+      Math.random().toString(),
+      placeId,
+      this.auth.userId,
+      placeTitle,
+      placeImage,
+      guestNumber,
+      firstName,
+      lastName,
+      dateFrom,
+      dateTo
+    );
+    return this._bookings.pipe(
+      take(1),
+      tap((bookings) => {
+        this._bookings.next(bookings.concat(newBooking));
+      })
+    );
+  }
+
+  cancelBooking(id: string) {
+    return this._bookings.pipe(
+      take(1),
+      tap((bookings) => {
+        this._bookings.next(bookings.filter((b) => b.id !== id));
+      })
     );
   }
 }
